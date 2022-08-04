@@ -1,0 +1,4 @@
+loguru=0.6.0
+pyTelegramBotAPI=4.6.0  
+beautifulsoup4=4.11.1
+python-dotenv=0.20.0
