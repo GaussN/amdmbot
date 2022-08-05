@@ -4,7 +4,7 @@ import telebot
 from loguru import logger
 from typing import List
 
-logger.add('logs/bot_logs.log', format='{time} {level} {message}', level='DEBUG', rotation='10 KB', compression='zip')
+logger.add('logs/bot_logs.log', format='{time} | {level} | {message}', level='DEBUG', rotation='10 KB', compression='zip')
 
 
 bot = telebot.TeleBot(config.BOT_TOKEN)
@@ -44,7 +44,7 @@ def get_chords(message):
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
     answer = call.data
-
+    #отправка выбрнной композиции
     bot.send_message(call.message.chat.id, answer)
 
 
