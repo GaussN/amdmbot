@@ -27,7 +27,7 @@ def get_chords(message):
     from amdmapi.composition import Composition
     from amdmapi.find_composition import find_conposition
     
-    compositions = find_conposition('Мне насрать на мое лицо')
+    compositions = find_conposition('Гражданская оборона')
     if compositions is not None and len(compositions) != 0:
         markup = telebot.types.InlineKeyboardMarkup()
         
