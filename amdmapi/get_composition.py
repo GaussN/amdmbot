@@ -5,14 +5,14 @@ from composition import Composition
 
 
 @logger.catch
-def get_composition(composition: Composition) -> str | None:
-    res = get(composition.link)
+def get_composition(link: str) -> str | None:
+    res = get(link)
     html = BeautifulSoup(res.text, 'html.parser')
-    logger.success(f'{composition.title} - text received')
+    logger.debug(f'text received')
     return html.pre.text
 
 
 if __name__ == '__main__':
     from find_composition import find_conposition
     compositions = find_conposition('Мне насрать на мое лицо')
-    print(get_composition(compositions[0]))
+    print(get_composition(compositions[0].link))

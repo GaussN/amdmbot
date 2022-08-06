@@ -13,8 +13,8 @@ def find_conposition(key_world: str) -> List[Composition] | None:
     params = {'q': key_world}
     res = get(SRC, params=params)
     
-    logger.info(f'find = {key_world}')
-    logger.info(f'response status = {res.status_code}')
+    logger.debug(f'find: {key_world}')
+    logger.debug(f'response status: {res.status_code}')
     
     compositions: List[Composition] = []
     if res:
@@ -28,10 +28,9 @@ def find_conposition(key_world: str) -> List[Composition] | None:
             link = a[1].get('href')                     # ссылка на текст 
             compositions.append(Composition(link=link, artist=artist, title=composition))
             
-        logger.success(f'compositions: {len(compositions)}')
+        logger.debug(f'compositions: {len(compositions)}')
         
         return compositions
-    logger.warning(f'response status != 200')    
     
         
 if __name__ == '__main__':
