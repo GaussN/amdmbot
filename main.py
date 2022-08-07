@@ -29,6 +29,7 @@ def start(message):
     except:
         pass
 
+
 #поиск композиций 
 @bot.message_handler(commands=['get_chords'])
 def get_chords(message):
@@ -69,7 +70,7 @@ def query_handler(call):
     try:
         answer = get_composition(link=f'https://amdm.ru/akkordi/{call.data}') 
         bot.send_message(call.message.chat.id, answer)        
-        logger.info(f'user({call.message.chat.id}) got chords')
+        logger.info(f'user({call.message.chat.id}) got chords({call.data})')
     except:
         bot.send_message(call.message.chat.id, 'Ошибка при отправке аккордов') 
 
