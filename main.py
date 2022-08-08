@@ -24,24 +24,18 @@ def start(message):
         logger.info(f'new user: {message.chat.id}')
         bot.send_message(
             message.chat.id, 
-            'Этот бот поможет тебе найти аккорды к песне. Для использования введи /get_сhords <Название песни>'
+            'Этот бот поможет тебе найти аккорды к песне. Для использования введи название песни'
         )        
     except:
         pass
 
 
 #поиск композиций 
-@bot.message_handler(commands=['get_chords'])
+@bot.message_handler(content_types=['text'])
 def get_chords(message):
-    argv = message.text.split()
-    if len(argv) == 1:
-        bot.send_message(message.chat.id, 'введите название песни вместе с командой')
-        return
+    logger.info(f'user({message.chat.id}) requested achords({message.text})')
     
-    find = " ".join(argv[1:])
-    logger.info(f'user({message.chat.id}) requested achords({find})')
-    
-    compositions = find_conposition(find)
+    compositions = find_conposition(message.text)
     if compositions is not None and len(compositions) != 0:
         markup = telebot.types.InlineKeyboardMarkup()
         
